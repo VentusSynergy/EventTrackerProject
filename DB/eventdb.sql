@@ -51,7 +51,7 @@ INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`,
 INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (2, 'Street Fighter V', 'Xbox One', 'T', '2016', 'Fighting', 2);
 INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (3, 'Mortal Kombat 11', 'Playstation 4', 'M', '2019', 'Fighting', 2);
 INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (4, 'Tekken 7', 'Xbox One', 'T', '2017', 'Fighting', 2);
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (5, 'Injustice 2', 'Playstation 4', 'T', '2017', 'Fighting', 2);
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (5, 'Injustice 2', 'PC', 'T', '2017', 'Fighting', 2);
 
 COMMIT;
 
