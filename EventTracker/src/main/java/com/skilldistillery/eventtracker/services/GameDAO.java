@@ -12,5 +12,7 @@ public interface GameDAO {
 	boolean deleteGame(int id);
 	Game createGame(Game game);
 	Game updateGame(int id, Game game);
+	List<Game> findByTitle(String title);
+	List<Game> findByLocation(String location);
 
 }

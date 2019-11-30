@@ -66,5 +66,21 @@ public class GameController {
 		Game updatedGame = dao.updateGame(id, game);
 		return updatedGame;
 	}
+	@GetMapping("games/search+title/{title}")
+	List<Game> searchByTitle(@PathVariable String title){
+		List<Game> games = dao.findByTitle(title);
+		
+		return games;
+		
+		
+	}
+	@GetMapping("games/search+location/{location}")
+	List<Game>searchByLocation(@PathVariable String location){
+		
+		List<Game> games = dao.findByLocation(location);
+		
+		return games;
+		
+	}
 
 }

@@ -28,6 +28,9 @@ public class Game {
 
 	private int players;
 
+	@Column(name = "event_location")
+	private String eventLocation;
+
 	public Game() {
 		super();
 	}
@@ -97,6 +100,15 @@ public class Game {
 
 	public void setPlayers(int players) {
 		this.players = players;
+	}
+	
+
+	public String getEventLocation() {
+		return eventLocation;
+	}
+
+	public void setEventLocation(String eventLocation) {
+		this.eventLocation = eventLocation;
 	}
 
 	@Override

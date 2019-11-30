@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `game` (
   `release_year` VARCHAR(45) NULL,
   `genre` VARCHAR(45) NULL,
   `players` INT NULL,
+  `event_location` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -47,11 +48,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (1, 'Dragon Ball Fighter Z', 'Playstation 4', 'T', '2018', 'Fighting', 2);
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (2, 'Street Fighter V', 'Xbox One', 'T', '2016', 'Fighting', 2);
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (3, 'Mortal Kombat 11', 'Playstation 4', 'M', '2019', 'Fighting', 2);
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (4, 'Tekken 7', 'Xbox One', 'T', '2017', 'Fighting', 2);
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (5, 'Injustice 2', 'PC', 'T', '2017', 'Fighting', 2);
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`, `event_location`) VALUES (1, 'Dragon Ball Fighter Z', 'Playstation 4', 'T', '2018', 'Fighting', 2, 'Greely, CO');
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`, `event_location`) VALUES (2, 'Street Fighter V', 'Xbox One', 'T', '2016', 'Fighting', 2, 'Denver, CO');
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`, `event_location`) VALUES (3, 'Mortal Kombat 11', 'Playstation 4', 'M', '2019', 'Fighting', 2, 'Thornton, CO');
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`, `event_location`) VALUES (4, 'Tekken 7', 'Xbox One', 'T', '2017', 'Fighting', 2, 'Colorado Springs, CO');
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`, `event_location`) VALUES (5, 'Injustice 2', 'PC', 'T', '2017', 'Fighting', 2, 'Fort Collins, CO');
 
 COMMIT;
 

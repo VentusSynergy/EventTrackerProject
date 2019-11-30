@@ -82,4 +82,17 @@ public class GameImpl implements GameDAO {
 		
 		return null;
 	}
+
+	@Override
+	public List<Game> findByTitle(String title) {
+		title = "%" + title + "%";
+		List<Game> games = repo.findByTitleLike(title);
+		return games;
+	}
+
+	@Override
+	public List<Game> findByLocation(String location) {
+		List<Game> games = repo.findByEventLocation(location);
+		return games;
+	}
 }

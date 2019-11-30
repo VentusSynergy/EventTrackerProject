@@ -49,6 +49,7 @@ class GameTest {
 		assertEquals(2018, game.getReleaseYear());
 		assertEquals("Fighting", game.getGenre());
 		assertEquals(2, game.getPlayers());
+		assertEquals("Greely, CO", game.getEventLocation());
 	}
 
 }
