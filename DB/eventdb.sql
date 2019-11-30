@@ -48,9 +48,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `eventdb`;
 INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (1, 'Dragon Ball Fighter Z', 'Playstation 4', 'T', '2018', 'Fighting', 2);
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (2, 'Street Fighter V', 'Playstation 4', 'T', '2016', 'Fighting', 2);
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (2, 'Street Fighter V', 'Xbox One', 'T', '2016', 'Fighting', 2);
 INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (3, 'Mortal Kombat 11', 'Playstation 4', 'M', '2019', 'Fighting', 2);
-INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (4, 'Tekken 7', 'Playstation 4', 'T', '2017', 'Fighting', 2);
+INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (4, 'Tekken 7', 'Xbox One', 'T', '2017', 'Fighting', 2);
 INSERT INTO `game` (`id`, `title`, `console`, `rating`, `release_year`, `genre`, `players`) VALUES (5, 'Injustice 2', 'Playstation 4', 'T', '2017', 'Fighting', 2);
 
 COMMIT;
