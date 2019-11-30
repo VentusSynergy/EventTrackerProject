@@ -63,4 +63,23 @@ public class GameImpl implements GameDAO {
 
 		return null;
 	}
+
+	@Override
+	public Game updateGame(int id, Game game) {
+		Optional<Game> opt = repo.findById(id);
+		
+		if(opt.isPresent()) {
+			Game updateGame = opt.get();
+			updateGame.setTitle(game.getTitle());
+			updateGame.setConsole(game.getConsole());
+			updateGame.setRating(game.getRating());
+			updateGame.setReleaseYear(game.getReleaseYear());
+			updateGame.setGenre(game.getGenre());
+			updateGame.setPlayers(game.getPlayers());
+			repo.saveAndFlush(updateGame);
+			return updateGame;
+		}
+		
+		return null;
+	}
 }

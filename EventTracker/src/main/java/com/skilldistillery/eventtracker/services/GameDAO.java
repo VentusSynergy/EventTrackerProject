@@ -11,5 +11,6 @@ public interface GameDAO {
 	List<Game> showAllByConsole(String console);
 	boolean deleteGame(int id);
 	Game createGame(Game game);
+	Game updateGame(int id, Game game);
 
 }
