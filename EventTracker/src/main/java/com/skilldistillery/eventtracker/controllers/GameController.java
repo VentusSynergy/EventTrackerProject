@@ -80,10 +80,14 @@ public class GameController {
 		Game createdGame;
 		try {
 			createdGame = dao.createGame(game);
-			resp.setStatus(201);
-			StringBuffer url = req.getRequestURL();
-			url.append("/").append(game.getId());
-			resp.addHeader("Location", url.toString());
+			if (game == null || game.getTitle() == null) {
+				resp.setStatus(400);
+			} else {
+				resp.setStatus(201);
+				StringBuffer url = req.getRequestURL();
+				url.append("/").append(game.getId());
+				resp.addHeader("Location", url.toString());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);
