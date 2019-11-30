@@ -76,6 +76,7 @@ public class GameImpl implements GameDAO {
 			updateGame.setReleaseYear(game.getReleaseYear());
 			updateGame.setGenre(game.getGenre());
 			updateGame.setPlayers(game.getPlayers());
+			updateGame.setEventLocation(game.getEventLocation());
 			repo.saveAndFlush(updateGame);
 			return updateGame;
 		}
