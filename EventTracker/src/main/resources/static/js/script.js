@@ -4,22 +4,15 @@ window.addEventListener('load', function(e) {
 })
 
 function init() {
-	document.allForm.lookup.addEventListener('click', function(e) {
-		event.preventDefault();
-		let gameDiv = document.getElementById('allGames');
 
-		while (gameDiv.firstElementChild) {
-			gameDiv.removeChild(gameDiv.firstElementChild);
-		}
-		allGames();
-	})
+	allGames();
 	document.addGameForm.create.addEventListener('click', function(e) {
 		event.preventDefault();
-//		let gameDiv = document.getElementById('allGames');
-//
-//		while (gameDiv.firstElementChild) {
-//			gameDiv.removeChild(gameDiv.firstElementChild);
-//		}
+		// let gameDiv = document.getElementById('allGames');
+		//
+		// while (gameDiv.firstElementChild) {
+		// gameDiv.removeChild(gameDiv.firstElementChild);
+		// }
 		addNewGame();
 	})
 
@@ -80,7 +73,7 @@ function allGames() {
 
 	xhr.send(null);
 }
-function displayCreatedGame(game){
+function displayCreatedGame(game) {
 	let gameDiv = document.getElementById('allGames');
 	let table = document.createElement('table');
 	table.border = '1';
@@ -88,7 +81,7 @@ function displayCreatedGame(game){
 	th.textContent = 'Created Game: ';
 	gameDiv.appendChild(table);
 	table.appendChild(th);
-	
+
 	let br = document.createElement('br');
 	var titleRow = document.createElement('tr');
 	let title = document.createElement('th');
@@ -173,6 +166,10 @@ function displayallGames(games) {
 		table.appendChild(br);
 		table.appendChild(titleRow);
 
+		title.addEventListener("click", function(e){
+			getGame(game);
+		})
+
 		let consoleRow = document.createElement('tr');
 		let cTD = document.createElement('td');
 		cTD.textContent = 'Console: ';
@@ -229,4 +226,111 @@ function displayallGames(games) {
 
 	}
 
+	function getGame(game){
+		let gameDiv = document.getElementById('allGames');
+		var form = document.createElement('form');
+		
+		form.name = 'updateForm';
+		gameDiv.appendChild(form)
+		var titleInput = document.createElement('input');
+		titleInput.type = 'text';
+		titleInput.name = 'title';
+		titleInput.value = game.title;
+		form.appendChild(titleInput);
+		
+		var consoleInput = document.createElement('input');
+		consoleInput.type = 'text';
+		consoleInput.name = 'console';
+		consoleInput.value = game.console;
+		form.appendChild(consoleInput);
+
+		var ratingInput = document.createElement('input');
+		ratingInput.type = 'text';
+		ratingInput.name = 'rating';
+		ratingInput.value = game.rating;
+		form.appendChild(ratingInput);
+		
+		var releaseYearInput = document.createElement('input');
+		releaseYearInput.type = 'text';
+		releaseYearInput.name = 'releaseYear';
+		releaseYearInput.value = game.releaseYear;
+		form.appendChild(releaseYearInput);
+		
+		var genreInput = document.createElement('input');
+		genreInput.type = 'text';
+		genreInput.name = 'genre';
+		genreInput.value = game.genre;
+		form.appendChild(genreInput);
+		
+		var playersInput = document.createElement('input');
+		playersInput.type = 'number';
+		playersInput.name = 'players';
+		playersInput.value = game.players;
+		form.appendChild(playersInput);
+		
+		var eventLocationInput = document.createElement('input');
+		eventLocationInput.type = 'text';
+		eventLocationInput.name = 'eventLocation';
+		eventLocationInput.value = game.eventLocation;
+		form.appendChild(eventLocationInput);
+		
+		var button = document.createElement('button');
+		button.name = 'update';
+		button.textContent = 'Update';
+		form.appendChild(button);
+		
+		form.update.addEventListener('click', function(e) {
+			event.preventDefault();
+
+
+			
+			if(titleInput.value.length > 0 && consoleInput.value.length > 0 && ratingInput.value.length > 0 && releaseYearInput.value.length > 0 && genreInput.value.length > 0 && playersInput.value.length > 0 && eventLocationInput.value.length > 0 ){
+				updateGame(game.id);
+				
+			}
+			else{
+				console.log('wont create')
+			}
+
+		})
+
+		
+
+	}
+	
+
 }
+
+function updateGame(id) {
+	var xhr = new XMLHttpRequest();
+	
+	var updateURL = 'http://localhost:8089/api/games/update/' + id;
+	
+	xhr.open('PUT', updateURL, true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			var gameObject = JSON.parse(xhr.responseText);
+			displayCreatedGame(gameObject);
+		}
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+			var dataDiv = document.getElementById('allGames');
+			dataDiv.textContent = 'Error Updating Game';
+		}
+	};
+	var newGame = {
+		title : document.updateForm.title.value,
+		console : document.updateForm.console.value,
+		rating : document.updateForm.rating.value,
+		releaseYear : document.updateForm.releaseYear.value,
+		genre : document.updateForm.genre.value,
+		players : document.updateForm.players.value,
+		eventLocation : document.updateForm.eventLocation.value
+	};
+	var newGameJSON = JSON.stringify(newGame);
+	xhr.send(newGameJSON);
+}
+
+
+
