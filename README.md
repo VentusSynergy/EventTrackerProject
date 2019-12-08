@@ -8,11 +8,11 @@
 
 ### Steps Of The Application
 
-##### Setting up both the JPA Project and the Spring Boot app was the first step for this project, and that mainly involved getting all of the dependencies put in, inputing my database's name, username, and password so that the application could properly access it. I moved on to creating the database and the most important part was testing my entity and all of it's fields with JUnit testing.
+##### Setting up both the JPA Project and the Spring Boot app was the first step for this project and that mainly involved getting all of the dependencies put in, inputing my database's name, username, and password so that the application could properly access it. I moved on to creating the database and the most important part was testing my entity and all of it's fields with JUnit testing.
 
 ### Lessons Learned
 
-##### Using dependencies that enable projects to run more smoothly and efficiently makes coding much faster. This was the first time I used the JpaRepository interface and it sped up creating CRUD operation faster than I thought possible because I was so used to writing out full SQL queries to access data. Overall, this project has showed me great new technologies that I cannot wait to apply to future projects.
+##### Using dependencies that enable projects to run more smoothly and efficiently makes coding much faster. This was the first time I used the Jpa Repository interface and it sped up creating CRUD operations faster than I thought possible because I was so used to writing out full SQL queries to access data. Overall, this project has showed me great new technologies that I cannot wait to apply to future projects.
 
 ### Routes
 

@@ -2,6 +2,13 @@ plugins {
 	id 'org.springframework.boot' version '2.2.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	
+}
+apply plugin: 'war'
+war {
+  enabled = true
+  archiveName = "${baseName}.war"     // Our app name, as defined in settings.gradle
+  destinationDir = file("../")         // Project root directory
 }
 
 group = 'com.skilldistillery.xtreme'
@@ -17,6 +24,8 @@ ext {
 
 dependencies {
 compile project(':JPAEventTracker')
+implementation ('org.springframework.boot:spring-boot-starter-tomcat')
+
 
     testImplementation("org.junit.jupiter:junit-jupiter:$junit5Version")
 
