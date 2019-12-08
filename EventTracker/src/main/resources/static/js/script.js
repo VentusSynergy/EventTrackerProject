@@ -8,12 +8,49 @@ function init() {
 		event.preventDefault();
 		let gameDiv = document.getElementById('allGames');
 
-    	while (gameDiv.firstElementChild) {
-    		gameDiv.removeChild(gameDiv.firstElementChild);
-    	}
+		while (gameDiv.firstElementChild) {
+			gameDiv.removeChild(gameDiv.firstElementChild);
+		}
 		allGames();
 	})
+	document.addGameForm.create.addEventListener('click', function(e) {
+		event.preventDefault();
+//		let gameDiv = document.getElementById('allGames');
+//
+//		while (gameDiv.firstElementChild) {
+//			gameDiv.removeChild(gameDiv.firstElementChild);
+//		}
+		addNewGame();
+	})
 
+}
+
+function addNewGame() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'http://localhost:8089/api/games/create/', true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			var gameObject = JSON.parse(xhr.responseText);
+			displayCreatedGame(gameObject);
+		}
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+			var dataDiv = document.getElementById('allGames');
+			dataDiv.textContent = 'Error Creating Game';
+		}
+	};
+	var newGame = {
+		title : document.addGameForm.title.value,
+		console : document.addGameForm.console.value,
+		rating : document.addGameForm.rating.value,
+		releaseYear : document.addGameForm.releaseYear.value,
+		genre : document.addGameForm.genre.value,
+		players : document.addGameForm.players.value,
+		eventLocation : document.addGameForm.eventLocation.value
+	};
+	var newGameJSON = JSON.stringify(newGame);
+	xhr.send(newGameJSON);
 }
 
 function allGames() {
@@ -43,6 +80,78 @@ function allGames() {
 
 	xhr.send(null);
 }
+function displayCreatedGame(game){
+	let gameDiv = document.getElementById('allGames');
+	let table = document.createElement('table');
+	table.border = '1';
+	let th = document.createElement('h2');
+	th.textContent = 'Created Game: ';
+	gameDiv.appendChild(table);
+	table.appendChild(th);
+	
+	let br = document.createElement('br');
+	var titleRow = document.createElement('tr');
+	let title = document.createElement('th');
+	title.textContent = game.title;
+	titleRow.appendChild(title);
+	table.appendChild(br);
+	table.appendChild(titleRow);
+
+	let consoleRow = document.createElement('tr');
+	let cTD = document.createElement('td');
+	cTD.textContent = 'Console: ';
+	consoleRow.appendChild(cTD);
+	let consoleData = document.createElement('td');
+	consoleData.textContent = game.console;
+	consoleRow.appendChild(consoleData);
+	table.appendChild(consoleRow);
+
+	let ratingRow = document.createElement('tr');
+	let rTD = document.createElement('td');
+	rTD.textContent = 'ESBR Rating: ';
+	ratingRow.appendChild(rTD);
+	let ratingData = document.createElement('td');
+	ratingData.textContent = game.rating;
+	ratingRow.appendChild(ratingData);
+	table.appendChild(ratingRow);
+
+	let releaseYearRow = document.createElement('tr');
+	let releaseTD = document.createElement('td');
+	releaseTD.textContent = 'Release Year: ';
+	releaseYearRow.appendChild(releaseTD);
+	let releaseData = document.createElement('td');
+	releaseData.textContent = game.releaseYear;
+	releaseYearRow.appendChild(releaseData);
+	table.appendChild(releaseYearRow);
+
+	let genreRow = document.createElement('tr');
+	let genreTD = document.createElement('td');
+	genreTD.textContent = 'Genre: ';
+	genreRow.appendChild(genreTD);
+	let genreData = document.createElement('td');
+	genreData.textContent = game.genre;
+	genreRow.appendChild(genreData);
+	table.appendChild(genreRow);
+
+	let playersRow = document.createElement('tr');
+	let playersTD = document.createElement('td');
+	playersTD.textContent = 'Players: ';
+	playersRow.appendChild(playersTD);
+	let playersData = document.createElement('td');
+	playersData.textContent = game.players;
+	playersRow.appendChild(playersData);
+	table.appendChild(playersRow);
+
+	let eventLocationRow = document.createElement('tr');
+	let eventLocationTD = document.createElement('td');
+	eventLocationTD.textContent = 'Event Location: ';
+	eventLocationRow.appendChild(eventLocationTD);
+	let eventLocationData = document.createElement('td');
+	eventLocationData.textContent = game.eventLocation;
+	eventLocationRow.appendChild(eventLocationData);
+	table.appendChild(eventLocationRow);
+
+}
 
 function displayallGames(games) {
 	let gameDiv = document.getElementById('allGames');
@@ -63,7 +172,7 @@ function displayallGames(games) {
 		titleRow.appendChild(title);
 		table.appendChild(br);
 		table.appendChild(titleRow);
-		
+
 		let consoleRow = document.createElement('tr');
 		let cTD = document.createElement('td');
 		cTD.textContent = 'Console: ';
@@ -99,7 +208,7 @@ function displayallGames(games) {
 		genreData.textContent = game.genre;
 		genreRow.appendChild(genreData);
 		table.appendChild(genreRow);
-		
+
 		let playersRow = document.createElement('tr');
 		let playersTD = document.createElement('td');
 		playersTD.textContent = 'Players: ';
@@ -108,7 +217,7 @@ function displayallGames(games) {
 		playersData.textContent = game.players;
 		playersRow.appendChild(playersData);
 		table.appendChild(playersRow);
-		
+
 		let eventLocationRow = document.createElement('tr');
 		let eventLocationTD = document.createElement('td');
 		eventLocationTD.textContent = 'Event Location: ';
@@ -117,22 +226,7 @@ function displayallGames(games) {
 		eventLocationData.textContent = game.eventLocation;
 		eventLocationRow.appendChild(eventLocationData);
 		table.appendChild(eventLocationRow);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
 }
