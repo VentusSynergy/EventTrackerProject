@@ -219,7 +219,8 @@ function displayCreatedGame(game) {
 	eventLocationData.textContent = game.eventLocation;
 	eventLocationRow.appendChild(eventLocationData);
 	table.appendChild(eventLocationRow);
-
+	
+	setTimeout(function(){ location.reload(); }, 3000);
 }
 
 function displayallGames(games) {
@@ -427,6 +428,8 @@ function updateGame(id) {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			var gameObject = JSON.parse(xhr.responseText);
 			displayCreatedGame(gameObject);
+			setTimeout(function(){ location.reload(); }, 3000)
+
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
 			console.error(xhr.status + ': ' + xhr.responseText);
