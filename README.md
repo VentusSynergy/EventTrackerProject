@@ -30,7 +30,7 @@
 
 ### * UPDATE *
 
-##### I have added the frontend of the project and it is now capable of doing basic CRUD using the routes created in the backend. The purpose of this part of the project was to get practice using Javascript. That being said, the only things that are on my HTML page are two empty DIV's and a background image. The rest of the page is being populated with Javascript.
+##### I have added the frontend of the project and it is now capable of doing basic CRUD using the routes created in the backend. The purpose of this part of the project was to get practice using Javascript. That being said, the only things that are on my HTML page are two empty DIV's and a background image. The rest of the page is being populated with Javascript. (To update and delete, click on the game title).
 
 ### Technologies/Topics Applied
 
