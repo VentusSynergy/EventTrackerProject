@@ -4,30 +4,36 @@ window.addEventListener('load', function(e) {
 	console.log('Document Loaded');
 	init();
 })
-function totalEvents(games){
+function totalEvents(games) {
 
 	var h2 = document.getElementById('eventNumber');
 	h2.textContent = 'TOTAL EVENTS: ' + games.length;
 }
 function createGameForm() {
-	let gameDiv = document.getElementById('allGames');
+	let head = document.createElement('p');
+	let em = document.createElement('strong');
+	em.textContent = 'Create Game:'
+	let newEventDiv = document.getElementById('newEvent');
 	var form = document.createElement('form');
 	form.name = 'addGameForm';
-	gameDiv.appendChild(form)
+	form.appendChild(head);
+	form.appendChild(em);
+
+	newEventDiv.appendChild(form)
 
 	var titleInput = document.createElement('input');
 	titleInput.type = 'text';
 	titleInput.name = 'title';
 	titleInput.placeholder = 'Title'
 	let br = document.createElement('br');
-	form.appendChild(br)
+	form.appendChild(br);
 	form.appendChild(titleInput);
 
 	var consoleInput = document.createElement('input');
 	consoleInput.type = 'text';
 	consoleInput.name = 'console';
 	consoleInput.placeholder = 'Console';
-	 br = document.createElement('br');
+	br = document.createElement('br');
 	form.appendChild(br)
 	form.appendChild(consoleInput);
 
@@ -35,7 +41,7 @@ function createGameForm() {
 	ratingInput.type = 'text';
 	ratingInput.name = 'rating';
 	ratingInput.placeholder = 'Rating';
-	 br = document.createElement('br');
+	br = document.createElement('br');
 	form.appendChild(br)
 	form.appendChild(ratingInput);
 
@@ -43,7 +49,7 @@ function createGameForm() {
 	releaseYearInput.type = 'text';
 	releaseYearInput.name = 'releaseYear';
 	releaseYearInput.placeholder = 'Release Year';
-	 br = document.createElement('br');
+	br = document.createElement('br');
 	form.appendChild(br)
 	form.appendChild(releaseYearInput);
 
@@ -51,7 +57,7 @@ function createGameForm() {
 	genreInput.type = 'text';
 	genreInput.name = 'genre';
 	genreInput.placeholder = 'Genre';
-	 br = document.createElement('br');
+	br = document.createElement('br');
 	form.appendChild(br)
 	form.appendChild(genreInput);
 
@@ -59,15 +65,15 @@ function createGameForm() {
 	playersInput.type = 'number';
 	playersInput.name = 'players';
 	playersInput.placeholder = 'Players';
-	 br = document.createElement('br');
+	br = document.createElement('br');
 	form.appendChild(br)
 	form.appendChild(playersInput);
 
-	 eventLocationInput = document.createElement('input');
+	eventLocationInput = document.createElement('input');
 	eventLocationInput.type = 'text';
 	eventLocationInput.name = 'eventLocation';
 	eventLocationInput.placeholder = 'Event Location';
-	 br = document.createElement('br');
+	br = document.createElement('br');
 	form.appendChild(br)
 	form.appendChild(eventLocationInput);
 
@@ -78,15 +84,12 @@ function createGameForm() {
 }
 
 function init() {
-	// let gameDiv = document.getElementById('allGames');
-	//	
-	// while (gameDiv.firstElementChild) {
-	// gameDiv.removeChild(gameDiv.firstElementChild);
-	// }
+
 
 	allGames();
 	document.addGameForm.create.addEventListener('click', function(e) {
 		event.preventDefault();
+
 
 		addNewGame();
 	})
@@ -104,7 +107,7 @@ function addNewGame() {
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
 			console.error(xhr.status + ': ' + xhr.responseText);
-			var dataDiv = document.getElementById('allGames');
+			var dataDiv = document.getElementById('newEvent');
 			dataDiv.textContent = 'Error Creating Game';
 		}
 	};
@@ -150,7 +153,15 @@ function allGames() {
 	xhr.send(null);
 }
 function displayCreatedGame(game) {
-	let gameDiv = document.getElementById('allGames');
+	
+	let gameDiv = document.getElementById('newEvent');
+		
+	 while (gameDiv.firstElementChild) {
+	 gameDiv.removeChild(gameDiv.firstElementChild);
+	 }
+	 
+	let br = document.createElement('br');
+	gameDiv.appendChild(br);
 	let table = document.createElement('table');
 	table.border = '1';
 	let th = document.createElement('h2');
@@ -158,7 +169,7 @@ function displayCreatedGame(game) {
 	gameDiv.appendChild(table);
 	table.appendChild(th);
 
-	let br = document.createElement('br');
+	br = document.createElement('br');
 	var titleRow = document.createElement('tr');
 	let title = document.createElement('th');
 	title.textContent = game.title;
@@ -219,8 +230,10 @@ function displayCreatedGame(game) {
 	eventLocationData.textContent = game.eventLocation;
 	eventLocationRow.appendChild(eventLocationData);
 	table.appendChild(eventLocationRow);
-	
-	setTimeout(function(){ location.reload(); }, 3000);
+
+	setTimeout(function() {
+		location.reload();
+	}, 3000);
 }
 
 function displayallGames(games) {
@@ -244,6 +257,11 @@ function displayallGames(games) {
 		table.appendChild(titleRow);
 
 		title.addEventListener("click", function(e) {
+			 let gameDiv = document.getElementById('newEvent');
+				
+			 while (gameDiv.firstElementChild) {
+			 gameDiv.removeChild(gameDiv.firstElementChild);
+			 }
 			getGame(game);
 		})
 
@@ -304,8 +322,15 @@ function displayallGames(games) {
 	}
 
 	function getGame(game) {
-		let gameDiv = document.getElementById('allGames');
+
+		let gameDiv = document.getElementById('newEvent');
 		var form = document.createElement('form');
+		let br = document.createElement('br');
+		gameDiv.appendChild(br);
+		let head = document.createElement('p');
+		let em = document.createElement('strong');
+		em.textContent = 'Update Game:'
+		gameDiv.appendChild(em);
 
 		form.name = 'updateForm';
 		gameDiv.appendChild(form)
@@ -314,47 +339,63 @@ function displayallGames(games) {
 		titleInput.name = 'title';
 		titleInput.value = game.title;
 		form.appendChild(titleInput);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var consoleInput = document.createElement('input');
 		consoleInput.type = 'text';
 		consoleInput.name = 'console';
 		consoleInput.value = game.console;
 		form.appendChild(consoleInput);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var ratingInput = document.createElement('input');
 		ratingInput.type = 'text';
 		ratingInput.name = 'rating';
 		ratingInput.value = game.rating;
 		form.appendChild(ratingInput);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var releaseYearInput = document.createElement('input');
 		releaseYearInput.type = 'text';
 		releaseYearInput.name = 'releaseYear';
 		releaseYearInput.value = game.releaseYear;
 		form.appendChild(releaseYearInput);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var genreInput = document.createElement('input');
 		genreInput.type = 'text';
 		genreInput.name = 'genre';
 		genreInput.value = game.genre;
 		form.appendChild(genreInput);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var playersInput = document.createElement('input');
 		playersInput.type = 'number';
 		playersInput.name = 'players';
 		playersInput.value = game.players;
 		form.appendChild(playersInput);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var eventLocationInput = document.createElement('input');
 		eventLocationInput.type = 'text';
 		eventLocationInput.name = 'eventLocation';
 		eventLocationInput.value = game.eventLocation;
 		form.appendChild(eventLocationInput);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var updateButton = document.createElement('button');
 		updateButton.name = 'update';
 		updateButton.textContent = 'Update';
 		form.appendChild(updateButton);
+		br = document.createElement('br');
+		form.appendChild(br);
 
 		var deleteButton = document.createElement('button');
 		deleteButton.name = 'deleteGame';
@@ -413,7 +454,7 @@ function deleteGame(id) {
 	};
 
 	xhr.send(null);
-	
+
 	location.reload();
 }
 
@@ -428,7 +469,9 @@ function updateGame(id) {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			var gameObject = JSON.parse(xhr.responseText);
 			displayCreatedGame(gameObject);
-			setTimeout(function(){ location.reload(); }, 3000)
+			setTimeout(function() {
+				location.reload();
+			}, 3000)
 
 		}
 		if (xhr.readyState === 4 && xhr.status >= 400) {
