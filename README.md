@@ -28,6 +28,10 @@
 | `Game`    |`PUT api/games/update/{id}` | Updates a game|
 
 
+### * UPDATE *
+
+##### I have added the frontend of the project and it is now capable of doing basic CRUD using the routes created in the backend. The purpose of this part of the project was to get practice using Javascript. That being said, the only things that are on my HTML page are two empty DIV's and a background image. The rest of the page is being populated with Javascript.
+
 ### Technologies/Topics Applied
 
-#### MySqlWorkbench, JPA, CRUD, Spring MVC, REST
+#### MySqlWorkbench, JPA, CRUD, Spring MVC, REST, DOM HTML, Javascript
