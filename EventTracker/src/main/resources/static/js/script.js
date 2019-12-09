@@ -274,10 +274,24 @@ function displayallGames(games) {
 		eventLocationInput.value = game.eventLocation;
 		form.appendChild(eventLocationInput);
 		
-		var button = document.createElement('button');
-		button.name = 'update';
-		button.textContent = 'Update';
-		form.appendChild(button);
+		var updateButton = document.createElement('button');
+		updateButton.name = 'update';
+		updateButton.textContent = 'Update';
+		form.appendChild(updateButton);
+		
+		var deleteButton = document.createElement('button');
+		deleteButton.name = 'deleteGame';
+		deleteButton.textContent = 'Delete';
+		form.appendChild(deleteButton);
+		
+		form.deleteGame.addEventListener('click', function(e) {
+			event.preventDefault();
+			
+			
+			deleteGame(game.id);
+
+			
+		})
 		
 		form.update.addEventListener('click', function(e) {
 			event.preventDefault();
@@ -300,6 +314,33 @@ function displayallGames(games) {
 	
 
 }
+
+function deleteGame(id) {
+	var xhr = new XMLHttpRequest();
+	var url = 'http://localhost:8089/api/games/delete/' + id;
+
+	xhr.open('DELETE', url);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			console.log(xhr.readyState);
+			console.log(xhr.status);
+			console.log('Game was successfully deleted');
+		}
+
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+			let bad = document.createElement('p');
+			bad.textContent = 'Could not delete';
+			let gameContent = document.getElementById('allGames');
+			gameContent.appendChild(bad);
+
+		}
+	};
+
+	xhr.send(null);
+}
+
 
 function updateGame(id) {
 	var xhr = new XMLHttpRequest();
