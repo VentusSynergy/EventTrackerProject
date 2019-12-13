@@ -98,7 +98,7 @@ function init() {
 
 function addNewGame() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://localhost:8089/api/games/create/', true);
+	xhr.open('POST', 'api/games/create/', true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
@@ -126,7 +126,7 @@ function addNewGame() {
 
 function allGames() {
 	var xhr = new XMLHttpRequest();
-	var url = 'http://localhost:8089/api/games';
+	var url = 'api/games';
 
 	xhr.open('GET', url);
 
@@ -432,7 +432,7 @@ function displayallGames(games) {
 
 function deleteGame(id) {
 	var xhr = new XMLHttpRequest();
-	var url = 'http://localhost:8089/api/games/delete/' + id;
+	var url = 'api/games/delete/' + id;
 
 	xhr.open('DELETE', url);
 
@@ -461,7 +461,7 @@ function deleteGame(id) {
 function updateGame(id) {
 	var xhr = new XMLHttpRequest();
 
-	var updateURL = 'http://localhost:8089/api/games/update/' + id;
+	var updateURL = 'api/games/update/' + id;
 
 	xhr.open('PUT', updateURL, true);
 	xhr.setRequestHeader("Content-type", "application/json");
