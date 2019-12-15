@@ -1,0 +1,107 @@
+<h1>Game Events <span class="badge" badge-primary>{{eventCount()}}</span></h1>
+<form #createEventForm=ngForm *ngIf=add>
+  Title: <input type="text" name="title" placeholder="title" ngModel><br>
+  Console: <select name="console" ngModel>
+      <option value="" disabled>Choose a console</option>
+    <option value="Playstation 4">Playstation 4</option>
+    <option value="Xbox One">Xbox One</option>
+    <option value="PC">PC</option>
+  </select><br>
+ ESBR Rating: <select name="rating" ngModel>
+    <option value="" disabled>Choose a rating</option>
+    <option value="E">E Rated</option>
+    <option value="T">T Rated</option>
+    <option value="M">M Rated</option>
+  </select><br>
+  Release Year: <input type="number" name="releaseYear" placeholder="release year" ngModel><br>
+  Genre: <select name="genre" ngModel>
+      <option value="" disabled>Choose a genre</option>
+    <option value="Adventure">Adventure</option>
+    <option value="Role-playing">Role-playing</option>
+    <option value="Strategy">Strategy</option>
+    <option value="Fighting">Fighting</option>
+  </select><br>
+  Players: <input type="number" name="players" placeholder="number of players" ngModel><br>
+  Event Location: <input type="text" name="eventLocation" placeholder="event address" ngModel><br>
+  <input type="submit" value="Add Event" (click)=create(createEventForm) class="btn btn-success">
+  <button (click)=addGame() class="btn btn-warning">Cancel</button>
+
+</form>
+<div *ngIf="!selected && !edit && !add">
+    <button (click)=addGame()>New Event</button>
+  <table *ngFor="let game of games" >
+    <th class="text-center" (click)=displayEvent(game) class="showHand">{{game.title}}</th>
+    <tr>
+      <td>Console: </td>
+      <td>{{game.console}}</td>
+    </tr>
+    <tr>
+      <td >Event Location: </td>
+      <td>{{game.eventLocation}}</td>
+    </tr>
+    <br>
+  </table>
+</div>
+<div *ngIf=selected>
+  <h3>{{selected.title }}</h3>
+  <tr>
+    <td>Console: </td>
+    <td>{{selected.console}}</td>
+  </tr>
+  <tr>
+    <td>ESBR Rating: </td>
+    <td>{{selected.rating}}</td>
+  </tr>
+  <tr>
+    <td>Release Year: </td>
+    <td>{{selected.releaseYear}}</td>
+  </tr>
+  <tr>
+    <td>Genre: </td>
+    <td>{{selected.genre}}</td>
+  </tr>
+  <tr>
+    <td>Players: </td>
+    <td>{{selected.players}}</td>
+  </tr>
+  <tr>
+    <td>Event Location: </td>
+    <td>{{selected.eventLocation}}</td>
+  </tr>
+
+  <button (click)=editGame()>Edit</button>
+  <button (click)=back()>Back</button>
+
+
+</div>
+
+<form #editForm=ngForm *ngIf="edit">
+  <input type="hidden" name="id" [(ngModel)]=edit.id><br>
+  Title: <input type="text" name="title" [(ngModel)]=edit.title placeholder="title"><br>
+  Console: <select name="console" [(ngModel)]=edit.console>
+    <option value="" disabled>Choose a console</option>
+    <option value="Playstation 4">Playstation 4</option>
+    <option value="Xbox One">Xbox One</option>
+    <option value="PC">PC</option>
+  </select><br>
+  ESBR Rating: <select name="rating" [(ngModel)]=edit.rating>
+      <option value="" disabled>Choose a rating</option>
+      <option value="E">E Rated</option>
+      <option value="T">T Rated</option>
+      <option value="M">M Rated</option>
+    </select><br>
+      Release Year: <input type="number" name="releaseYear" [(ngModel)]=edit.releaseYear placeholder="release year"><br>
+      Genre: <select name="genre" [(ngModel)]=edit.genre>
+        <option value="" disabled>Choose a genre</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Role-playing">Role-playing</option>
+        <option value="Strategy">Strategy</option>
+        <option value="Fighting">Fighting</option>
+      </select><br>  Players: <input type="number" name="players" [(ngModel)]=edit.players placeholder="number of players"><br>
+  Event Location: <input type="text" name="eventLocation" [(ngModel)]=edit.eventLocation placeholder="event address"><br>
+  <input type="submit" value="Submit Change" (click)=update(editForm) class="btn btn-success"><br>
+  <button (click)=delete(edit.id) class="btn btn-danger">Delete</button>
+  <button (click)=cancelEdit() class="btn btn-warning">Cancel</button>
+
+
+</form>
