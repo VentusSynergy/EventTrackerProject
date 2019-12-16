@@ -1,6 +1,6 @@
 ## Event Tracker Project
 
-### Week 12 - 13 Homework Project for Skill Distillery
+### Week 12 - 14 Homework Project for Skill Distillery
 
 ### Overview
 
