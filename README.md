@@ -30,7 +30,7 @@
 
 ### * UPDATE *
 
-##### Starting off with creating a front end to this project, I used JavaScript to populate the HTML and was capable of doing basic CRUD using the routes created in the backend. The purpose of this part of the project was to get practice using raw JavaScript. That being said, the only things that were on my HTML page were two empty DIV's and a background image. The rest of the page was being populated with JavaScript. After experiencing using plain JavaScript, I replaced it with Angular and things are much more organized and the code is more readable. When given the chance, I will prefer using Angular over JavaScript any day.
+##### Starting off with creating a front end to this project, I used JavaScript to populate the HTML and was capable of doing basic CRUD using the routes created in the backend. The purpose of this part of the project was to get practice using raw JavaScript. That being said, the only things that were on my HTML page were two empty DIV's and a background image. The rest of the page was being populated with JavaScript. After experiencing using plain JavaScript, I replaced it with Angular and things are now much more organized and the code is more readable. When given the chance, I will prefer using Angular over JavaScript any day.
 
 ### Technologies/Topics Applied
 
