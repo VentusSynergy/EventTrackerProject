@@ -7,12 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameComponent } from './components/game/game.component';
 import { GameService } from './services/game.service';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameComponent
+    GameComponent,
+    NavBarComponent,
+    NotFoundComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

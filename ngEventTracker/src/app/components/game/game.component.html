@@ -1,72 +1,90 @@
-<h1>Game Events <span class="badge" badge-primary>{{eventCount()}}</span></h1>
-<form #createEventForm=ngForm *ngIf=add>
-  Title: <input type="text" name="title" placeholder="title" ngModel><br>
-  Console: <select name="console" ngModel>
+<h1 style="color:white;" class="p-3 mb-2 bg-warning">Game Events <span class="badge badge-dark"
+    badge-primary>{{eventCount()}}</span></h1>
+<form #createEventForm=ngForm *ngIf=add >
+    <label style="color:white;" for="title">Title:</label><br>
+    <input  type="text" name="title" placeholder="title" ngModel><br><br>
+    <label style="color:white;" for="title">Console:</label><br>
+    <select name="console" ngModel>
       <option value="" disabled>Choose a console</option>
-    <option value="Playstation 4">Playstation 4</option>
-    <option value="Xbox One">Xbox One</option>
-    <option value="PC">PC</option>
-  </select><br>
- ESBR Rating: <select name="rating" ngModel>
-    <option value="" disabled>Choose a rating</option>
-    <option value="E">E Rated</option>
-    <option value="T">T Rated</option>
-    <option value="M">M Rated</option>
-  </select><br>
-  Release Year: <input type="number" name="releaseYear" placeholder="release year" ngModel><br>
-  Genre: <select name="genre" ngModel>
+      <option value="Playstation 4">Playstation 4</option>
+      <option value="Xbox One">Xbox One</option>
+      <option value="PC">PC</option>
+    </select><br><br>
+    <label style="color:white;" for="title">Rating:</label><br>
+    <select name="rating" ngModel>
+      <option value="" disabled>Choose a rating</option>
+      <option value="E">E Rated</option>
+      <option value="T">T Rated</option>
+      <option value="M">M Rated</option>
+    </select><br><br>
+    <label style="color:white;" for="title">Release Year:</label><br>
+    <input type="number" name="releaseYear" ngModel placeholder="YYYY"><br><br>
+    <label style="color:white;" for="title">Genre:</label><br>
+    <select name="genre" ngModel>
       <option value="" disabled>Choose a genre</option>
-    <option value="Adventure">Adventure</option>
-    <option value="Role-playing">Role-playing</option>
-    <option value="Strategy">Strategy</option>
-    <option value="Fighting">Fighting</option>
-  </select><br>
-  Players: <input type="number" name="players" placeholder="number of players" ngModel><br>
-  Event Location: <input type="text" name="eventLocation" placeholder="event address" ngModel><br>
+      <option value="Adventure">Adventure</option>
+      <option value="Role-playing">Role-playing</option>
+      <option value="Strategy">Strategy</option>
+      <option value="Fighting">Fighting</option>
+    </select><br><br>
+    <label style="color:white;"for="title">Players:</label><br>
+    <input type="number" name="players" ngModel placeholder="number of players"><br><br>
+    <label style="color:white;" for="title">Event Address:</label><br>
+    <input type="text" name="eventLocation" ngModel placeholder="event address"><br><br>
   <input type="submit" value="Add Event" (click)=create(createEventForm) class="btn btn-success">
   <button (click)=addGame() class="btn btn-warning">Cancel</button>
 
 </form>
-<div *ngIf="!selected && !edit && !add">
-    <button (click)=addGame()>New Event</button>
-  <table *ngFor="let game of games" >
-    <th class="text-center" (click)=displayEvent(game) class="showHand">{{game.title}}</th>
+<div *ngIf="!selected && !edit && !add" align=center>
+  <button (click)=addGame() class="tbl btn btn-primary btn-lg">New Event</button>
+  <h2 style="color:white;" *ngIf="invalid">Incorrect fields, try again.</h2>
+
+</div>
+<div align=center *ngIf="!selected && !edit && !add" style="color:white;">
+  <br>
+  <br>
+
+  <table class="tbl" *ngFor="let game of games">
+
+    <th class="text-center table-dark" (click)=displayEvent(game) colspan="4" class="showHand display-3">{{game.title}}
+    </th>
     <tr>
-      <td>Console: </td>
-      <td>{{game.console}}</td>
+      <td class="table-dark" colspan="4">Console: </td>
+      <td class="table-dark text-center " style="height: 60px; width: 250px;" colspan="4">{{game.console}}</td>
     </tr>
     <tr>
-      <td >Event Location: </td>
-      <td>{{game.eventLocation}}</td>
+      <td class="table-dark" colspan="4">Event Location: &nbsp; &nbsp;</td>
+      <td class="table-dark text-center" colspan="4">{{game.eventLocation}}</td>
     </tr>
     <br>
+
   </table>
 </div>
-<div *ngIf=selected>
-  <h3>{{selected.title }}</h3>
-  <tr>
-    <td>Console: </td>
-    <td>{{selected.console}}</td>
+<div *ngIf=selected style="height: 60px; width: 500px;">
+  <h1 style="color:white;">{{selected.title }}</h1>
+  <tr class="details">
+    <td class="text-info">Console: </td>
+    <td class="text-info">{{selected.console}}</td>
   </tr>
-  <tr>
-    <td>ESBR Rating: </td>
-    <td>{{selected.rating}}</td>
+  <tr class="details">
+    <td class="text-info">ESBR Rating: </td>
+    <td class="text-info">{{selected.rating}}</td>
   </tr>
-  <tr>
-    <td>Release Year: </td>
-    <td>{{selected.releaseYear}}</td>
+  <tr class="details">
+    <td class="text-info">Release Year: </td>
+    <td class="text-info">{{selected.releaseYear}}</td>
   </tr>
-  <tr>
-    <td>Genre: </td>
-    <td>{{selected.genre}}</td>
+  <tr class="details">
+    <td class="text-info">Genre: </td>
+    <td class="text-info">{{selected.genre}}</td>
   </tr>
-  <tr>
-    <td>Players: </td>
-    <td>{{selected.players}}</td>
+  <tr class="details">
+    <td class="text-info">Players: </td>
+    <td class="text-info">{{selected.players}}</td>
   </tr>
-  <tr>
-    <td>Event Location: </td>
-    <td>{{selected.eventLocation}}</td>
+  <tr class="details">
+    <td class="text-info">Event Location: &nbsp; </td>
+    <td class="text-info">{{selected.eventLocation}}</td>
   </tr>
 
   <button (click)=editGame()>Edit</button>
@@ -76,32 +94,43 @@
 </div>
 
 <form #editForm=ngForm *ngIf="edit">
+  <h2 style="color:yellow;">Edit: <br>{{edit.title}}</h2>
   <input type="hidden" name="id" [(ngModel)]=edit.id><br>
-  Title: <input type="text" name="title" [(ngModel)]=edit.title placeholder="title"><br>
-  Console: <select name="console" [(ngModel)]=edit.console>
+  <label style="color:white;" for="title">Title:</label><br>
+  <input type="text" name="title" [(ngModel)]=edit.title placeholder="title"><br><br>
+  <label style="color:white;" for="title">Console:</label><br>
+  <select name="console" [(ngModel)]=edit.console>
     <option value="" disabled>Choose a console</option>
     <option value="Playstation 4">Playstation 4</option>
     <option value="Xbox One">Xbox One</option>
     <option value="PC">PC</option>
-  </select><br>
-  ESBR Rating: <select name="rating" [(ngModel)]=edit.rating>
-      <option value="" disabled>Choose a rating</option>
-      <option value="E">E Rated</option>
-      <option value="T">T Rated</option>
-      <option value="M">M Rated</option>
-    </select><br>
-      Release Year: <input type="number" name="releaseYear" [(ngModel)]=edit.releaseYear placeholder="release year"><br>
-      Genre: <select name="genre" [(ngModel)]=edit.genre>
-        <option value="" disabled>Choose a genre</option>
-        <option value="Adventure">Adventure</option>
-        <option value="Role-playing">Role-playing</option>
-        <option value="Strategy">Strategy</option>
-        <option value="Fighting">Fighting</option>
-      </select><br>  Players: <input type="number" name="players" [(ngModel)]=edit.players placeholder="number of players"><br>
-  Event Location: <input type="text" name="eventLocation" [(ngModel)]=edit.eventLocation placeholder="event address"><br>
-  <input type="submit" value="Submit Change" (click)=update(editForm) class="btn btn-success"><br>
+  </select><br><br>
+  <label style="color:white;" for="title">Rating:</label><br>
+  <select name="rating" [(ngModel)]=edit.rating>
+    <option value="" disabled>Choose a rating</option>
+    <option value="E">E Rated</option>
+    <option value="T">T Rated</option>
+    <option value="M">M Rated</option>
+  </select><br><br>
+  <label style="color:white;" for="title">Release Year:</label><br>
+  <input type="number" name="releaseYear" [(ngModel)]=edit.releaseYear placeholder="YYYY"><br><br>
+  <label style="color:white;" for="title">Genre:</label><br>
+  <select name="genre" [(ngModel)]=edit.genre>
+    <option value="" disabled>Choose a genre</option>
+    <option value="Adventure">Adventure</option>
+    <option value="Role-playing">Role-playing</option>
+    <option value="Strategy">Strategy</option>
+    <option value="Fighting">Fighting</option>
+  </select><br><br>
+  <label style="color:white;"for="title">Players:</label><br>
+  <input type="number" name="players" [(ngModel)]=edit.players placeholder="number of players"><br><br>
+  <label style="color:white;" for="title">Event Address:</label><br>
+  <input type="text" name="eventLocation" [(ngModel)]=edit.eventLocation placeholder="event address"><br><br>
+  <input type="submit" style="width: 145px;" value="Submit Change" (click)=update(editForm)
+    class="btn btn-success"><br><br>
   <button (click)=delete(edit.id) class="btn btn-danger">Delete</button>
   <button (click)=cancelEdit() class="btn btn-warning">Cancel</button>
 
 
 </form>
+

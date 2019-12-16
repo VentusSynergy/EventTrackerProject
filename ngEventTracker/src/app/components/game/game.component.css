@@ -1,4 +1,13 @@
 .showHand:hover{
-  color: red;
-  cursor: pointer;
+color: red;
+cursor: pointer;
 }
+
+  .tbl {
+    font-size: 30px;
+  }
+  .details {
+    font-size: 30px;
+  }
+
+

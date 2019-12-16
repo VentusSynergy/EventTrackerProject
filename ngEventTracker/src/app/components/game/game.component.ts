@@ -2,6 +2,7 @@ import { GameService } from './../../services/game.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Game } from 'src/app/models/game';
+import { format } from 'url';
 
 
 @Component({
@@ -21,6 +22,15 @@ export class GameComponent implements OnInit {
 
 
 
+  invalid = false;
+  setValid() {
+    this.invalid = false;
+  }
+  invalidForm() {
+
+    this.invalid = true;
+    this.add = null;
+  }
   reload() {
     this.gameSvc.index().subscribe(
       (aGoodThingHappened) => {
@@ -35,26 +45,40 @@ export class GameComponent implements OnInit {
   }
 
   create(gameForm: NgForm) {
+    this.invalid = false;
     const game = gameForm.value;
-    this.gameSvc.create(game).subscribe(
-      goodStuff => {
-        console.log(goodStuff);
-        this.reload();
-      },
 
-      badStuff => {
-        console.error(badStuff);
-        console.error('BADDDDD');
+    // tslint:disable-next-line: max-line-length
+    if (gameForm.value.title.length < 1 || gameForm.value.title.length > 16 || gameForm.value.console.length < 1 || gameForm.value.eventLocation.length < 1 || gameForm.value.rating.length < 1 || gameForm.value.releaseYear.length < 1 || gameForm.value.genre.length < 1 || gameForm.value.players.length < 1) {
+      this.invalidForm();
+    } else {
 
 
-      }
-    );
+      this.gameSvc.create(game).subscribe(
+        goodStuff => {
+          console.log(goodStuff);
+          this.reload();
+        },
+
+        badStuff => {
+          console.error(badStuff);
+          console.error('BADDDDD');
+
+
+        }
+      );
+    }
     gameForm.reset();
     this.add = null;
   }
   update(gameForm: NgForm) {
     const game = gameForm.value;
     // this.todoForm = editForm;
+    // tslint:disable-next-line: max-line-length
+    if (gameForm.value.title.length < 1 || gameForm.value.title.length > 16 ||gameForm.value.console.length < 1 || gameForm.value.eventLocation.length < 1 || gameForm.value.rating.length < 1 || gameForm.value.releaseYear.length < 1 || gameForm.value.genre.length < 1 || gameForm.value.players.length < 1) {
+      this.invalidForm();
+    } else {
+
 
     this.gameSvc.update(gameForm.value.id, game).subscribe(
 
@@ -70,6 +94,8 @@ export class GameComponent implements OnInit {
 
       }
     );
+    }
+    this.reload();
     this.edit = null;
 
   }
@@ -90,6 +116,8 @@ export class GameComponent implements OnInit {
     this.edit = null;
   }
   displayEvent(game) {
+    this.invalid = false;
+
     this.selected = game;
   }
 
@@ -104,15 +132,13 @@ export class GameComponent implements OnInit {
     this.selected = null;
   }
   addGame() {
+    this.invalid = false;
+
     this.add = !this.add;
   }
   eventCount() {
     return this.games.length;
   }
-
-
-
-
 
 
 

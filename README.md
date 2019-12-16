@@ -30,8 +30,8 @@
 
 ### * UPDATE *
 
-##### I have added the frontend of the project and it is now capable of doing basic CRUD using the routes created in the backend. The purpose of this part of the project was to get practice using Javascript. That being said, the only things that are on my HTML page are two empty DIV's and a background image. The rest of the page is being populated with Javascript. (To update and delete, click on the game title).
+##### Starting off with creating a front end to this project, I used JavaScript to populate the HTML and was capable of doing basic CRUD using the routes created in the backend. The purpose of this part of the project was to get practice using raw JavaScript. That being said, the only things that were on my HTML page were two empty DIV's and a background image. The rest of the page was being populated with JavaScript. After experiencing using plain JavaScript, I replaced it with Angular and things are much more organized and the code is more readable. When given the chance, I will prefer using Angular over JavaScript any day.
 
 ### Technologies/Topics Applied
 
-#### MySqlWorkbench, JPA, CRUD, Spring MVC, REST, DOM HTML, Javascript
+#### MySqlWorkbench, JPA, CRUD, Spring MVC, REST, DOM HTML, Javascript, Angular
